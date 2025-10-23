@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { products } from '../data/products';
 import { ArrowLeft } from 'lucide-react';
+import { Navbar } from '../components/Navbar';
 
 export function ProductDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -8,12 +9,15 @@ export function ProductDetail() {
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-[#3d4f5c] mb-4">Product Not Found</h1>
-          <Link to="/" className="text-[#3d4f5c] hover:underline">
-            Return to Home
-          </Link>
+      <div className="min-h-screen bg-white">
+        <Navbar />
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold text-[#3d4f5c] mb-4">Product Not Found</h1>
+            <Link to="/" className="text-[#3d4f5c] hover:underline">
+              Return to Home
+            </Link>
+          </div>
         </div>
       </div>
     );
@@ -21,19 +25,20 @@ export function ProductDetail() {
 
   return (
     <div className="min-h-screen bg-white">
-      <header className="fixed top-0 left-0 right-0 z-50 py-4 bg-white/80 backdrop-blur-sm shadow-sm">
-        <nav className="container mx-auto px-6">
+      <Navbar />
+      <div className="pt-24">
+        <div className="container mx-auto px-6">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-[#3d4f5c] hover:text-[#2d3f4c] transition"
+            className="inline-flex items-center gap-2 text-[#3d4f5c] hover:text-[#2d3f4c] transition mb-8"
           >
             <ArrowLeft className="w-5 h-5" />
             <span className="font-semibold">Back to Home</span>
           </Link>
-        </nav>
-      </header>
+        </div>
+      </div>
 
-      <main className="container mx-auto px-6 pt-32 pb-20">
+      <main className="container mx-auto px-6 pb-20">
         <div className="grid md:grid-cols-2 gap-12 items-start">
           <div className="relative">
             <div className="sticky top-32">
